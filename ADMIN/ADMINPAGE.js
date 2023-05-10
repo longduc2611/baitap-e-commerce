@@ -3,11 +3,8 @@ function handleShowProduct() {
     $(".category").load("/handledanhmuc/ProductAdmin.html");
 
     setTimeout(() => {
-        fetchListProductAdmin();
+        loadProductAdmin();
     }, 200)
-
-
-
 }
 function handleShowCategory() {
     $(".category").load("/handledanhmuc/Category.html");
@@ -22,7 +19,7 @@ listProduct = [];
 var idProductUpdate = "";
 function handleCreateNewProduct() {
 
-    v_Id = document.getElementById("Id").value;
+    // v_Id = document.getElementById("Id").value;
     v_Name = document.getElementById("Name").value;
     v_Price = document.getElementById("Price").value;
     v_Info = document.getElementById("Info").value;
@@ -39,59 +36,109 @@ function handleCreateNewProduct() {
     imageName = imageArray[imageArray.length - 1];
     // console.log("imageName = imageArray[imageArray.length -1];", imageName)
     productNew = {
-        id: v_Id,
+        // id: v_Id,
         name: v_Name,
         price: v_Price,
         info: v_Info,
         detail: v_Detail,
-        star: v_Star,
-        image: imageName,
+        ratingStar: v_Star,
+        imageName: imageName,
         manufacturer: v_Manufacturer,
         category: v_Category
-    }
-    listProduct.push(productNew);
-    localStorage.setItem("listProduct", JSON.stringify(listProduct));
-    handleResetForm();
-    fetchListProductAdmin();
-
-
-};
-function fetchListProductAdmin() {
-    listProduct = [];
-
-    if (localStorage && localStorage.getItem("listProduct")) {
-        var listProductLocalStorage = JSON.parse(localStorage.getItem("listProduct"));
-        listProduct = listProductLocalStorage;
-        console.log("listProduct = ", listProduct)
-    }
-    // Xóa bảng dữ liệu hiện tại
-    $("#tbodyProductAdmin").empty();
-    // Dùng vòng lặp for để tạo product
-
-    for (let index = 0; index < listProduct.length; index++) {
-        $("#tbodyProductAdmin").append(
-            `
-        <tr>
-      <td>${listProduct[index].id}</td>
-      <td>${listProduct[index].name}</td>
-      <td>${listProduct[index].price}</td>
-      <td>${listProduct[index].info}</td>
-      <td>${listProduct[index].detail}</td>
-      <td>${listProduct[index].star}</td>
-      <td>${listProduct[index].image}</td>
-      <td>${listProduct[index].manufacturer}</td>
-      <td>${listProduct[index].category}</td>
-      <td>
-        <button type="button" class="btn btn-warning" onclick ="handleEdit(${listProduct[index].id})" >Edit</button>
-      </td>
-      <td>
-        <button type="button" class="btn btn-danger" onclick="handleDelete(${listProduct[index].id})" >Delete</button>
-      </td>
-  </tr>
-         `
-        );
     };
+
+    $.ajax({
+        type: "POST",
+        url: "https://645644852e41ccf169183062.mockapi.io/product",
+        data: JSON.stringify(productNew),
+        contentType: "application/json",
+        success: function (response) {
+            loadProductAdmin()
+        }
+    });
+    // listProduct.push(productNew);
+    // localStorage.setItem("listProduct", JSON.stringify(listProduct));
+    handleResetForm();
+    loadProductAdmin();
+    // fetchListProductAdmin();
+
+
 };
+// function fetchListProductAdmin() {
+//     listProduct = [];
+
+//     if (localStorage && localStorage.getItem("listProduct")) {
+//         var listProductLocalStorage = JSON.parse(localStorage.getItem("listProduct"));
+//         listProduct = listProductLocalStorage;
+//         console.log("listProduct = ", listProduct)
+//     }
+//     // Xóa bảng dữ liệu hiện tại
+//     $("#tbodyProductAdmin").empty();
+//     // Dùng vòng lặp for để tạo product
+
+//     for (let index = 0; index < listProduct.length; index++) {
+//         $("#tbodyProductAdmin").append(
+//             `
+//         <tr>
+//       <td>${listProduct[index].id}</td>
+//       <td>${listProduct[index].name}</td>
+//       <td>${listProduct[index].price}</td>
+//       <td>${listProduct[index].info}</td>
+//       <td>${listProduct[index].detail}</td>
+//       <td>${listProduct[index].star}</td>
+//       <td>${listProduct[index].image}</td>
+//       <td>${listProduct[index].manufacturer}</td>
+//       <td>${listProduct[index].category}</td>
+//       <td>
+//         <button type="button" class="btn btn-warning" onclick ="handleEdit(${listProduct[index].id})" >Edit</button>
+//       </td>
+//       <td>
+//         <button type="button" class="btn btn-danger" onclick="handleDelete(${listProduct[index].id})" >Delete</button>
+//       </td>
+//   </tr>
+//          `
+//         );
+//     };
+// };
+
+function loadProductAdmin() {
+    $.ajax({
+        type: "GET",
+        url: "https://645644852e41ccf169183062.mockapi.io/product",
+        success: function (response) {
+            listProduct = response;
+            console.log(listProduct);
+
+            for (let index = 0; index < listProduct.length; index++) {
+                $("#tbProductAdmin").empty();
+
+                $("#tbodyProductAdmin").append(
+                    `
+                     <tr>
+                   <td>${listProduct[index].id}</td>
+                   <td>${listProduct[index].name}</td>
+                   <td>${listProduct[index].price}</td>
+                   <td>${listProduct[index].info}</td>
+                   <td>${listProduct[index].detail}</td>
+                   <td>${listProduct[index].ratingStar}</td>
+                   <td>${listProduct[index].imageName}</td>
+                   <td>${listProduct[index].manufacturerId}</td>
+                   <td>${listProduct[index].categoryId}</td>
+                   <td>
+                     <button type="button" class="btn btn-warning" onclick ="handleEdit(${listProduct[index].id})" >Edit</button>
+                   </td>
+                   <td>
+                     <button type="button" class="btn btn-danger" onclick="handleDelete(${listProduct[index].id})" >Delete</button>
+                   </td>
+               </tr>
+                      `
+                );
+
+            };
+        }
+    });
+}
+
 function handleResetForm() {
     $("#Id").val("");
     $("#Name").val("");
@@ -115,9 +162,15 @@ function handleDelete(idDelete) {
     if (confirmDelete) {
         var indexProductDelete = listProduct.findIndex((product) => product.id == idDelete);
         if (indexProductDelete !== -1) {
-            listProduct.splice(indexProductDelete, 1);
-            localStorage.setItem("listProduct", JSON.stringify(listProduct))
-            fetchListProductAdmin();
+           var urldelete = "https://645644852e41ccf169183062.mockapi.io/product/" + idDelete;
+           $.ajax({
+            type: "DELETE",
+            url: urldelete,
+            success: function (response) {
+                loadProductAdmin();
+            }
+           });
+            // fetchListProductAdmin();
         } else {
             alert("Không thể xóa sản phẩm này")
         }
@@ -180,15 +233,38 @@ function handleUpdateProduct() {
     listProduct[index].manufacturer = v_Manufacturer;
     listProduct[index].category = v_Category;
 
+    let productUpdate = {
+        name: v_Name,
+    price: v_Price,
+    info: v_Info,
+    detail: v_Detail,
+    ratingStar: v_Star,
+    imageName: v_Image,
+    manufacturerId: v_Manufacturer,
+    categoryId: v_Category,
+    }
+
+    urlUpdate = "https://645644852e41ccf169183062.mockapi.io/product/" + idProductUpdate;
+
+    $.ajax({
+        type: "PUT",
+        url: urlUpdate,
+        data: JSON.stringify(productUpdate),
+        contentType: "application/json",
+        success: function (response) {
+            loadProductAdmin();
+        }
+    });
+
     // Lưu lại dữ liệu vào LocalStorage
-    localStorage.setItem("listProduct", JSON.stringify(listProduct));
+    // localStorage.setItem("listProduct", JSON.stringify(listProduct));
 
     // Reset Form Update
     handleResetUpdate();
     // Đóng Modal Update
     $("#ModalUpdateProduct").modal("hide");
     // Hiển thị lại dữ liệu sau Update
-    fetchListProductAdmin();
+    // fetchListProductAdmin();
 }
 
 

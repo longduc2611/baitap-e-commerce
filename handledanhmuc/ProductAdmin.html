@@ -18,7 +18,7 @@
             <th>Delete</th>
         </tr>
     </thead>
-    <tbody id="tbodyProductAdmin" >
+    <tbody id="tbodyProductAdmin">
         <!-- Row 1 -->
         <!-- <tr>
             <td>1</td>
@@ -65,57 +65,59 @@
 </table>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <ul class="pagination" style="margin-left: 40px">
-        <li><a href="#">1</a></li>
-        <li class="active"><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-      </ul>
+        <ul class="pagination" style="margin-left: 40px">
+            <li><a href="#">1</a></li>
+            <li class="active"><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+        </ul>
     </div>
-  </div>
-  <!-- MODAL -->
-  <div id="myModal" class="modal fade" role="dialog" >
+</div>
+<!-- MODAL -->
+<div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal Content -->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><h2>Create New Product</h2></h4>
+                <h4 class="modal-title">
+                    <h2>Create New Product</h2>
+                </h4>
             </div>
             <div class="modal-body">
                 <form>
                     <div class="form-group">
                         <label for="">ID</label>
-                        <input type="number" class="form-control" id="Id" placeholder="Input ID" >
+                        <input type="number" class="form-control" id="Id" placeholder="Input ID"disabled >
                     </div>
                     <div class="form-group">
                         <label for="">Name</label>
-                        <input type="text" class="form-control" id="Name" placeholder="Input Name" >
+                        <input type="text" class="form-control" id="Name" placeholder="Input Name">
                     </div>
                     <div class="form-group">
                         <label for="">Price</label>
-                        <input type="text" class="form-control" id="Price" placeholder="Input Price" >
+                        <input type="text" class="form-control" id="Price" placeholder="Input Price">
                     </div>
                     <div class="form-group">
                         <label for="">Info</label>
-                        <textarea  class="form-control" rows="3" id="Info" placeholder="Input Info" ></textarea>
+                        <textarea class="form-control" rows="3" id="Info" placeholder="Input Info"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="">Detail</label>
-                        <textarea class="form-control" rows="5" id="Detail" placeholder="Input Detail" ></textarea>
+                        <textarea class="form-control" rows="5" id="Detail" placeholder="Input Detail"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="">Star</label>
-                        <input type="number" class="form-control" id="Star" placeholder="Input Star" >
+                        <input type="number" class="form-control" id="Star" placeholder="Input Star">
                     </div>
                     <div class="form-group">
                         <label for="">Image</label>
-                        <input type="file" class="form-control" id="Image" placeholder="Input Image" >
+                        <input type="file" class="form-control" id="Image" placeholder="Input Image">
                     </div>
                     <div class="form-group">
                         <label for="">Manufacturer</label>
-                        <select name="" id="Manufacturer" class="form-control" required="required" >
+                        <select name="" id="Manufacturer" class="form-control" required="required">
                             <option value="0">Choose a Manufacturer</option>
                             <option value="SAMSUNG">SAMSUNG</option>
                             <option value="APPLE">APPLE</option>
@@ -125,67 +127,69 @@
                     </div>
                     <div class="form-group">
                         <label for="">Category</label>
-                        <select name="" id="Category" class="form-control" required="required" >
+                        <select name="" id="Category" class="form-control" required="required">
                             <option value="0">Choose a Category</option>
                             <option value="Điện Thoại">Điện Thoại</option>
                             <option value="Tablet">Tablet</option>
                             <option value="Laptop">Laptop</option>
                         </select>
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="handleCreateNewProduct()" >Save</button>
-                    <button type="reset" class="btn btn-warning" onclick="handleResetForm()" >Reset</button>
+                    <button type="button" class="btn btn-primary" onclick="handleCreateNewProduct()">Save</button>
+                    <button type="reset" class="btn btn-warning" onclick="handleResetForm()">Reset</button>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                      </div>
-              
-                </form>
-            </div>
-        </div>
-    </div>
-  </div>
+                    </div>
 
-  <!-- MODAL UPDATE PRODUCT -->
-  <div id="ModalUpdateProduct" class="modal fade" role="dialog" >
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL UPDATE PRODUCT -->
+<div id="ModalUpdateProduct" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal Content -->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><h2> Update Product</h2></h4>
+                <h4 class="modal-title">
+                    <h2> Update Product</h2>
+                </h4>
             </div>
             <div class="modal-body">
                 <form>
                     <div class="form-group">
                         <label for="">ID</label>
-                        <input type="number" class="form-control" id="IdUpdate" placeholder="Input ID" disabled >
+                        <input type="number" class="form-control" id="IdUpdate" placeholder="Input ID" disabled>
                     </div>
                     <div class="form-group">
                         <label for="">Name</label>
-                        <input type="text" class="form-control" id="NameUpdate" placeholder="Input Name" >
+                        <input type="text" class="form-control" id="NameUpdate" placeholder="Input Name">
                     </div>
                     <div class="form-group">
                         <label for="">Price</label>
-                        <input type="text" class="form-control" id="PriceUpdate" placeholder="Input Price" >
+                        <input type="text" class="form-control" id="PriceUpdate" placeholder="Input Price">
                     </div>
                     <div class="form-group">
                         <label for="">Info</label>
-                        <textarea  class="form-control" rows="3" id="InfoUpdate" placeholder="Input Info" ></textarea>
+                        <textarea class="form-control" rows="3" id="InfoUpdate" placeholder="Input Info"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="">Detail</label>
-                        <textarea class="form-control" rows="5" id="DetailUpdate" placeholder="Input Detail" ></textarea>
+                        <textarea class="form-control" rows="5" id="DetailUpdate" placeholder="Input Detail"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="">Star</label>
-                        <input type="number" class="form-control" id="StarUpdate" placeholder="Input Star" >
+                        <input type="number" class="form-control" id="StarUpdate" placeholder="Input Star">
                     </div>
                     <div class="form-group">
                         <label for="">Image</label>
-                        <input type="file" class="form-control" id="ImageUpdate" placeholder="Input Image" >
+                        <input type="file" class="form-control" id="ImageUpdate" placeholder="Input Image">
                     </div>
                     <div class="form-group">
                         <label for="">Manufacturer</label>
-                        <select name="" id="ManufacturerUpdate" class="form-control" required="required" >
+                        <select name="" id="ManufacturerUpdate" class="form-control" required="required">
                             <option value="0">Choose a Manufacturer</option>
                             <option value="SAMSUNG">SAMSUNG</option>
                             <option value="APPLE">APPLE</option>
@@ -195,21 +199,21 @@
                     </div>
                     <div class="form-group">
                         <label for="">Category</label>
-                        <select name="" id="CategoryUpdate" class="form-control" required="required" >
+                        <select name="" id="CategoryUpdate" class="form-control" required="required">
                             <option value="0">Choose a Category</option>
                             <option value="Điện Thoại">Điện Thoại</option>
                             <option value="Tablet">Tablet</option>
                             <option value="Laptop">Laptop</option>
                         </select>
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="handleUpdateProduct()" >Update</button>
-                    <button type="reset" class="btn btn-warning" onclick="handleResetUpdate()" >Reset</button>
+                    <button type="button" class="btn btn-primary" onclick="handleUpdateProduct()">Update</button>
+                    <button type="reset" class="btn btn-warning" onclick="handleResetUpdate()">Reset</button>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                      </div>
-              
+                    </div>
+
                 </form>
             </div>
         </div>
     </div>
-  </div>
+</div>

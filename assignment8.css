@@ -1,3 +1,7 @@
+html{
+    margin: auto;
+    padding: 0;
+}
 *{
     padding: 0;
     margin: 0;
@@ -50,7 +54,64 @@ header a{
 }
 .ProductList{
     padding: 1em;
+    
+    
 }
 #img-footer{
     padding: 1rem;
+}
+.cart-icon{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 2rem;
+    height: 2rem;
+    margin: 8rem;
+}
+#btnaddcart{
+    margin-left: 3em;
+}
+#btn-circle{
+    background-color: #FED100;
+    border-radius: 10rem;
+}
+@media screen and (max-width:1000px){
+    .ProductList{
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+    .row::before{
+        content: none;
+    }
+    #btnaddcart{
+        margin-left: 5em;
+    }
+    .col-xs-3{
+        width: 100%;
+    }
+    #banner1 img {
+        width: 50%;
+    }
+    #banner2 img {
+        width: 50%;
+    }
+    #banner3 img {
+        width: 50%;
+    }
+
+}
+@media screen and (max-width:650px){
+    .ProductList{
+        display: grid;
+        grid-template-columns: auto auto ;
+    }
+    .row::before{
+        content: none;
+    }
+    #btnaddcart{
+        margin-left: 5em;
+    }
+    .col-xs-3{
+        width: 100%;
+    }
 }
